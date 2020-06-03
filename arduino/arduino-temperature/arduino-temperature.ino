@@ -5,19 +5,17 @@
 // Set DHT pin:
 #define DHTPIN 4
 
-// Set DHT type, uncomment whatever type you're using!
+// Set DHT type, uncomment whatever type you're using
 #define DHTTYPE DHT11   // DHT 11 
 //#define DHTTYPE DHT22   // DHT 22  (AM2302)
 //#define DHTTYPE DHT21   // DHT 21 (AM2301)
 
-// Initialize DHT sensor for normal 16mhz Arduino:
+// Initialize DHT sensor
 DHT dht = DHT(DHTPIN, DHTTYPE);
 
 void setup() {
   // Begin serial communication at a baud rate of 9600:
   Serial.begin(9600);
-
-    PubNub.begin("demo", "demo");
 
   // Setup sensor:
   dht.begin();
@@ -44,8 +42,14 @@ void loop() {
   float hif = dht.computeHeatIndex(f, h);
   // Compute heat index in Celsius:
   float hic = dht.computeHeatIndex(t, h, false);
+  
+Serial.print("Temperature: ");
+Serial.println(t);
+Serial.print("Humidity: ");
+Serial.println(h);
 
-/*
+// Example outputs
+/* 
   Serial.print("Humidity: ");
   Serial.print(h);
   Serial.print(" % ");
@@ -64,5 +68,4 @@ void loop() {
   Serial.print(" \xC2\xB0");
   Serial.println("F");
 */
-  Serial.println(t);
 }

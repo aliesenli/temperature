@@ -19,8 +19,14 @@ port.on("open", function () {
       dataset: data,
       time: moment().unix() // Unix timestamps
     }
+    if(sensorData.dataset.includes("Temperature")) {
+      sensorData.dataset = sensorData.dataset.replace("Temperature: ", "");
+      io.emit('temperature-data', sensorData)
+    } else if (sensorData.dataset.includes("Humidity")) {
+      sensorData.dataset = sensorData.dataset.replace("Humidity: ", "");
+      io.emit ('humidity-data', sensorData)
+    }
     
-    io.emit('temperature-data', sensorData)
   });
 });
 
