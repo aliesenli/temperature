@@ -1,18 +1,19 @@
-# Arduino Live Temperature Chart
-#### Simple arduino project getting temperature data and displaying a live-chart
+# Arduino Live Temperature/Humidity Chart
+#### Simple arduino project reading temperature & humidity data and displaying live-charts
 <img src="https://github.com/AliEsenli/arduino-live-temperature/blob/master/public/temperature-chart.gif">
 <img src="https://github.com/AliEsenli/arduino-live-temperature/blob/master/public/arduino-plan.png">
 
-This project was made using the DHT11 temperature and humidity sensor.
+In this project I used the DHT11 temperature- and humiditysensor for measurements. Apexcharts for charting/visualizing. Data is read through Serial Port and Socket.io is used for communication between client and server (emitting temperature & humidity data to client)
 
-#### Requirements
-- Visual Studio Code
+#### Prerequisites
+- Visual Studio Code 
 - Arduino IDE
+- Node.js
 
 #### Installation
-Open Arduino IDE and Upload the .ino file to your Arduino UNO. Please make sure your arduino is using the "COM3" port or change it in the source code(server.js).
+Open Arduino IDE and Upload the .ino file to your Arduino UNO. If you are using Windows, please make sure your arduino is using the "COM3" serial port or change it in the source code(server.js). For Linux, your serial port will look like this "/dev/ttyS"
 
-Open Visual Studio Code go to integrated terminal and type: 
+Open Visual Studio Code, go to integrated terminal and type: 
 ```
 npm install
 ```
@@ -20,4 +21,4 @@ After that you can run the server using:
 ```
 npm start
 ```
-Then browse to localhost:3000
+Then visit localhost:3000 in your browser
