@@ -1,7 +1,7 @@
 var data = [];
 var sensorData = [];
-var lastDate = "";
-var lastTemperature = "";
+var lastDate;
+var lastTemperature;
 var lastHumidity = 0;
 
 var socket = io();
