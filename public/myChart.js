@@ -89,18 +89,32 @@ var options = {
         categories: [],
         range: 30,
         title: {
-            text: "Time"
+            text: "Time",
+            offsetY: 10
         },
         labels: {
+            rotateAlways: true,
+            rotate: -30,
+            offsetX: 15,
+            offsetY: 10,
             formatter: function (value) {
                 return new Date(value * 1000).toLocaleTimeString();
             }
-        }
+        },
+        axisBorder: {
+            color: '#78909C'
+        },
+        axisTicks: {
+            color: '#78909C',
+        },
     },
     yaxis: {
         opposite: true,
         title: {
             text: "Celsius"
+        },
+        labels: {
+            offsetX: -10
         }
     },
     title: {
