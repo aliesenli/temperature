@@ -3,23 +3,9 @@ var sensorData = [];
 var lastDate;
 var lastTemperature;
 var lastHumidity = 0;
-
 var socket = io();
-    socket.on('temperature-data', (content) => {
-        sensorData.push(content);
-        lastTemperature = sensorData.slice(-1)[0].dataset
-        lastDate = sensorData.slice(-1)[0].time
-    })
-    socket.on('humidity-data', (content) => {
-        lastHumidity = content.dataset;
-    })
-    
-function getNewSeries(date, yAxis) {
-    var newSerie = [date, yAxis]
-    data.push(newSerie);
-}
 
-var options = {
+var temperatureOptions = {
     series: [{
        name: "Temperature",
        data: data.slice()
@@ -40,9 +26,6 @@ var options = {
             enabled: true,
             speed: 350
             }
-        },
-        toolbar: {
-        show: false
         },
         zoom: {
         enabled: false
@@ -127,9 +110,6 @@ var options = {
     },
 };
 
-var lineChart = new ApexCharts(document.querySelector("#chart"), options);
-lineChart.render();
-
 var humidityOptions = {
     series: [0],
     chart: {
@@ -177,22 +157,34 @@ var humidityOptions = {
   },
 };
 
+var temperatureChart = new ApexCharts(document.querySelector("#temperatureChart"), temperatureOptions);
+temperatureChart.render();
+
 var humidityChart = new ApexCharts(document.querySelector("#humidityChart"), humidityOptions);
 humidityChart.render();
 
-function update() {
+socket.on('temperature-data', (content) => {
+    sensorData.push(content);
+    lastTemperature = sensorData.slice(-1)[0].dataset
+    lastDate = sensorData.slice(-1)[0].time
+    getNewSeries(lastDate, lastTemperature)
+    temperatureChart.updateSeries([{
+        data: data
+    }])
+})
+
+socket.on('humidity-data', (content) => {
+    lastHumidity = content.dataset;
+    humidityChart.updateSeries(updateHumidity())
+})
+
+function updateHumidity() {
     return humidityChart.w.globals.series.map(function() {
         return Math.floor(lastHumidity)
     })
 }
 
-window.setInterval(function () {
-getNewSeries(lastDate, lastTemperature)
-
-lineChart.updateSeries([{
-    data: data
-}])
-
-humidityChart.updateSeries(update())
-
-}, 4010)
+function getNewSeries(date, yAxis) {
+    var newSerie = [date, yAxis]
+    data.push(newSerie);
+}
