@@ -21,4 +21,4 @@ After that you can run the server using:
 ```
 npm start
 ```
-Then visit localhost:3000 in your browser
+Then visit localhost:3000 in your browser (of course your Arduino has to be plugged in and running)
