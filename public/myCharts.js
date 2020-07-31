@@ -1,14 +1,11 @@
-var data = [];
+var chartData = [];
 var sensorData = [];
-var lastDate;
-var lastTemperature;
-var lastHumidity = 0;
 var socket = io();
 
 var temperatureOptions = {
     series: [{
        name: "Temperature",
-       data: data.slice()
+       data: chartData.slice()
     }],
         chart: {
         id: 'realtime',
@@ -165,26 +162,31 @@ humidityChart.render();
 
 socket.on('temperature-data', (content) => {
     sensorData.push(content);
-    lastTemperature = sensorData.slice(-1)[0].dataset
-    lastDate = sensorData.slice(-1)[0].time
-    getNewSeries(lastDate, lastTemperature)
+    getNewSeries(getLastDate(), getLastTemperature())
     temperatureChart.updateSeries([{
-        data: data
+        data: chartData
     }])
 })
 
-socket.on('humidity-data', (content) => {
-    lastHumidity = content.dataset;
-    humidityChart.updateSeries(updateHumidity())
+socket.on('humidity-data', (data) => {
+    humidityChart.updateSeries(updateHumidityChart(data))
 })
 
-function updateHumidity() {
-    return humidityChart.w.globals.series.map(function() {
-        return Math.floor(lastHumidity)
-    })
+function getLastTemperature() {
+    return sensorData.slice(-1)[0].dataset;
+}
+
+function getLastDate() {
+    return sensorData.slice(-1)[0].time
 }
 
 function getNewSeries(date, yAxis) {
     var newSerie = [date, yAxis]
-    data.push(newSerie);
+    chartData.push(newSerie);
+}
+
+function updateHumidityChart(data) {
+    return humidityChart.w.globals.series.map(function() {
+        return Math.floor(data.dataset)
+    })
 }
