@@ -5,7 +5,7 @@ const io = require('socket.io')(http);
 const moment = require('moment')
 const SerialPort = require('serialport');
 
-app.use(express.static('public'));
+app.use(express.static('client'));
 
 const Readline = SerialPort.parsers.Readline;
 const port = new SerialPort('COM3'); // Port your Arduino is connected to
@@ -26,7 +26,6 @@ port.on("open", function () {
       sensorData.dataset = sensorData.dataset.replace("Humidity: ", "");
       io.emit ('humidity-data', sensorData)
     }
-    
   });
 });
 
