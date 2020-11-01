@@ -1,7 +1,7 @@
 # Arduino Live Temperature/Humidity Chart
 #### Simple arduino project reading temperature & humidity data and displaying live-charts
-<img src="https://github.com/AliEsenli/arduino-live-temperature/blob/master/public/img/temperature-chart.gif">
-<img src="https://github.com/AliEsenli/arduino-live-temperature/blob/master/public/img/arduino-plan.png">
+<img src="https://github.com/AliEsenli/arduino-live-temperature/blob/master/docs/temperature-chart.gif">
+<img src="https://github.com/AliEsenli/arduino-live-temperature/blob/master/docs/arduino-plan.png">
 
 In this project I used the `DHT11` temperature- and humiditysensor for measurements. Apexcharts for charting/visualizing. Data is read through Serial Port and Socket.io is used for communication between client and server (emitting temperature & humidity data to client)
 
