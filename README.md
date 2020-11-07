@@ -1,4 +1,6 @@
 # Arduino Live Temperature/Humidity Chart
+![Node.js CI](https://github.com/AliEsenli/Arduino-Temperature-Chart/workflows/Node.js%20CI/badge.svg?branch=master)
+
 #### Simple arduino project reading temperature & humidity data and displaying live-charts
 <img src="https://github.com/AliEsenli/arduino-live-temperature/blob/master/docs/temperature-chart.gif">
 <img src="https://github.com/AliEsenli/arduino-live-temperature/blob/master/docs/arduino-plan.png">
