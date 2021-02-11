@@ -4,7 +4,7 @@
   "description": "Simple Arduino project getting temperature data from serialport and displaying a live-chart on localhost ",
   "main": "server.js",
   "dependencies": {
-    "apexcharts": "^3.19.2",
+    "apexcharts": "^3.24.0",
     "express": "^4.17.1",
     "moment": "^2.26.0",
     "serialport": "^9.0.0",
