@@ -1,6 +1,6 @@
 var data = [];
 
-var temperatureOptions = {
+var temperature = {
     series: [{
        name: "Temperature",
        data: data
@@ -105,4 +105,4 @@ var temperatureOptions = {
     },
 };
 
-export { temperatureOptions, data };
+export { temperature, data };

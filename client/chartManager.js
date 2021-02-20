@@ -1,14 +1,14 @@
-import { temperatureOptions, data } from './temperatureOptions.js';
-import { humidityOptions } from './humidityOptions.js';
+import { temperature, data } from './options/temperature.js';
+import { humidity } from './options/humidity.js';
 
 var socket = io();
 var sensorData = [];
 var chartData = data;
 
-var temperatureChart = new ApexCharts(document.querySelector("#temperatureChart"), temperatureOptions);
+var temperatureChart = new ApexCharts(document.querySelector("#temperatureChart"), temperature);
 temperatureChart.render();
 
-var humidityChart = new ApexCharts(document.querySelector("#humidityChart"), humidityOptions);
+var humidityChart = new ApexCharts(document.querySelector("#humidityChart"), humidity);
 humidityChart.render();
 
 socket.on('temperature-data', (content) => {

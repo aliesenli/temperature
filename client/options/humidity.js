@@ -1,4 +1,4 @@
-var humidityOptions = {
+var humidity = {
     series: [0],
     chart: {
     height: 350,
@@ -45,4 +45,4 @@ var humidityOptions = {
   },
 };
 
-export { humidityOptions };
+export { humidity };
