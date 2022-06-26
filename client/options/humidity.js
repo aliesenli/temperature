@@ -1,6 +1,6 @@
-var humidity = {
-    series: [0],
-    chart: {
+var humiditySettings = {
+  series: [0],
+  chart: {
     height: 350,
     type: 'radialBar',
     offsetY: -10
@@ -27,8 +27,8 @@ var humidity = {
   fill: {
     type: 'gradient',
     gradient: {
-        shade: 'dark',
-        shadeIntensity: 0.3,
+      shade: 'dark',
+      shadeIntensity: 0.3,
     },
   },
   stroke: {
@@ -39,10 +39,10 @@ var humidity = {
     text: 'Humidity Chart',
     align: 'left',
     style: {
-       fontSize: '14px',
-       color: '#3498DB'
+      fontSize: '14px',
+      color: '#3498DB'
     }
   },
 };
 
-export { humidity };
+export { humiditySettings };

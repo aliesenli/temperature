@@ -1,9 +1,7 @@
-var data = [];
-
-var temperature = {
+var temperatureSettings = {
     series: [{
-       name: "Temperature",
-       data: data
+        name: "Temperature",
+        data: []
     }],
     chart: {
         id: 'realtime',
@@ -23,30 +21,30 @@ var temperature = {
             }
         },
         zoom: {
-        enabled: false
+            enabled: false
         },
     },
     colors: ['#ff0340'],
     dataLabels: {
         enabled: true,
         style: {
-        fontSize: '12px',
-        fontWeight: 'bold'
+            fontSize: '12px',
+            fontWeight: 'bold'
         },
         background: {
-        enabled: true,
-        foreColor: '#fff',
-        padding: 4,
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: '#fff',
-        opacity: 0.9,
+            enabled: true,
+            foreColor: '#fff',
+            padding: 4,
+            borderRadius: 5,
+            borderWidth: 1,
+            borderColor: '#fff',
+            opacity: 0.9,
         },
     },
     grid: {
         padding: {
-        left: 15,
-        right: 15
+            left: 15,
+            right: 15
         }
     },
     stroke: {
@@ -99,10 +97,10 @@ var temperature = {
         text: 'Temperature Chart',
         align: 'left',
         style: {
-        fontSize: '14px',
-        color: '#3498DB'
+            fontSize: '14px',
+            color: '#3498DB'
         }
     },
 };
 
-export { temperature, data };
+export { temperatureSettings };

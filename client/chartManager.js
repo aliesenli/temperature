@@ -1,43 +1,22 @@
-import { temperature, data } from './options/temperature.js';
-import { humidity } from './options/humidity.js';
+import { temperatureSettings } from './options/temperature.js';
+import { humiditySettings } from './options/humidity.js';
 
-var socket = io();
-var sensorData = [];
-var chartData = data;
+const socket = io();
+const chartData = [];
 
-var temperatureChart = new ApexCharts(document.querySelector("#temperatureChart"), temperature);
+const temperatureChart = new ApexCharts(document.querySelector("#temperatureChart"), temperatureSettings);
+const humidityChart = new ApexCharts(document.querySelector("#humidityChart"), humiditySettings);
+
 temperatureChart.render();
-
-var humidityChart = new ApexCharts(document.querySelector("#humidityChart"), humidity);
 humidityChart.render();
 
-socket.on('temperature-data', (content) => {
-    sensorData.push(content);
-    getNewSeries(getLastDate(), getLastTemperature())
+socket.on('emit-temperature', (content) => {
+    chartData.push([content.timestamp, content.temperature]);
     temperatureChart.updateSeries([{
         data: chartData
     }])
 })
 
-socket.on('humidity-data', (data) => {
-    humidityChart.updateSeries(updateHumidityChart(data))
+socket.on('emit-humidity', (data) => {
+    humidityChart.updateSeries([Math.floor(data.humidity)]);
 })
-
-function getLastTemperature() {
-    return sensorData.slice(-1)[0].dataset;
-}
-
-function getLastDate() {
-    return sensorData.slice(-1)[0].time
-}
-
-function getNewSeries(date, yAxis) {
-    var newSerie = [date, yAxis]
-    chartData.push(newSerie);
-}
-
-function updateHumidityChart(data) {
-    return humidityChart.w.globals.series.map(function() {
-        return Math.floor(data.dataset)
-    })
-}
